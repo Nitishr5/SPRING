@@ -1,0 +1,95 @@
+******* Person.java *************  //Using perametrise constructor
+
+package com.spring.constructor;
+
+public class Person {
+	private String name;
+	private int personId;
+	
+	
+	public Person(String name,int personId) {
+		this.name=name;
+		this.personId=personId;
+	}
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name+" : "+this.personId;
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+********************* ConstConfig.xml    *********************
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/p
+           http://www.springframework.org/schema/p/spring-p.xsd">
+
+ <!-- this is our bean -->
+ 
+  <bean class="com.spring.constructor.Person" name="person">
+  	<constructor-arg value="Nitish"/>
+  	<constructor-arg value="12" type="int"/>
+  		
+  
+  </bean>
+   		
+   		
+  
+
+</beans>
+
+=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+NOTE==>  🔥 Agar Same Type ke Multiple Parameters ho
+
+Agar dono String ho to ambiguity hoti hai. Tab type ya index use karte hain:
+
+✔ Using index
+<constructor-arg index="0" value="101"/>
+<constructor-arg index="1" value="Nitish"/>
+
+✔ Using type
+<constructor-arg type="int" value="101"/>
+<constructor-arg type="java.lang.String" value="Nitish"/>
+
+=========>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+**********************   Test.java      **************************   * RUN YHI HOTA HAI *
+
+package com.spring.constructor;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+	public static void main(String[] args) {
+		ApplicationContext context =
+			    new ClassPathXmlApplicationContext("com/spring/constructor/constconfig.xml");
+
+	Person p=(Person) context.getBean("person");
+	System.out.println(p);
+	}
+}
