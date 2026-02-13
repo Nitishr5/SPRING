@@ -1,0 +1,131 @@
+********************************   Emp.java     ************************
+
+package com.springcore.collection;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class Emp {
+	private String name;
+	private List<String> phones;
+	private Set<String> address;
+	private Map<String,String> courses;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<String> getPhones() {
+		return phones;
+	}
+	public void setPhones(List<String> phones) {
+		this.phones = phones;
+	}
+	public Set<String> getAddress() {
+		return address;
+	}
+	public void setAddress(Set<String> address) {
+		this.address = address;
+	}
+	public Map<String, String> getCourses() {
+		return courses;
+	}
+	public void setCourses(Map<String, String> courses) {
+		this.courses = courses;
+	}
+	public Emp() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+********************** Test.java  ****************      // RUN YHI WALA FILE HOTA HAI
+
+package com.springcore.collection;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+    public static void main(String[] args) {
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("com/springcore/collection/collconfig.xml");
+
+        Emp emp1 = (Emp) context.getBean("emp1");
+
+        System.out.println(emp1.getName());
+        System.out.println(emp1.getPhones());
+        System.out.println(emp1.getAddress());
+        System.out.println(emp1.getCourses());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+*************************  CollConfig.xml  ***********************
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/p
+           http://www.springframework.org/schema/p/spring-p.xsd">
+
+
+ 
+   <bean name="emp1" class="com.springcore.collection.Emp">
+   	<property  name="name" value="Radhe"/>
+   	
+   	<property name="phones">
+   	<list>
+   			<value>749396</value>
+   			<value>4545</value>
+   			<value>451745</value>
+   	</list>
+   	</property>
+   	
+   	<property name="address">
+   	<set>
+   		<value>Delhi</value>
+   		<value>Lucknow</value>
+   		<value>kanpur</value>
+   	</set>
+   	</property>
+   	
+   	<property name="courses">
+   		<map>
+   			<entry key="java" value="2month"/>
+   			<entry key="Paython" value="1.2moonths"/>
+   			<entry key="c" value="1months"/>
+   		</map>
+   	</property>
+   </bean>
+  
+
+</beans>
+
